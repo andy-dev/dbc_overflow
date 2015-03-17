@@ -4,6 +4,7 @@ class CreateAnswers < ActiveRecord::Migration
       t.string :title
       t.text :body
       t.integer :votes
+      t.references :question, index: true
 
       t.timestamps null: false
     end

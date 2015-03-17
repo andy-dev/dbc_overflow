@@ -1,5 +1,7 @@
 <h1>Listing all Questions</h1>
 
+
+
 <table>
   <tr>
     <th> Title</th>
@@ -9,9 +11,11 @@
   <% @questions.each do |question| %>
   <tr>
     <td> <%= question.title %> </td>
-    <td> <%= question.text %> </td>
+    <td> <%= question.body %> </td>
   </tr>
   <% end %>
 
 
 </table>
+
+<%= link_to 'New Question', new_question_path %>

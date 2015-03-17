@@ -5,18 +5,3 @@ RSpec.describe Question, type: :model do
 end
 
 
-describe QuestionsController do
-
-
-  describe "index" do
-    it "renders the index template" do
-      get :index
-      response.should contain("Listing all Questions")
-    end
-
-    it "renders the questions/index template" do
-      get :index
-      response.should contain("Listing all Questions")
-    end
-  end
-end
