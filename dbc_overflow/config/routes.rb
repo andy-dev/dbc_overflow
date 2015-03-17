@@ -4,7 +4,16 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :answers
+
+    # match '/questions/:question_id/votes' => 'votes#create', as: :votes_update
   end
+
+  get '/questions/:id/upvote' => 'questions#upvote', as: :question_upvote
+  get '/questions/:id/downvote' => 'questions#downvote', as: :question_downvote
+
+
+
+
   # resources :questions do
   #   resources :answers
   # end
