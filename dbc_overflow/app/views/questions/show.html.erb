@@ -8,6 +8,19 @@
   <%= @question.body %>
 </p>
 
+<h2>Answer</h2>
+<% @question.answers.each do |answer| %>
+  <p>
+    <strong>Title:</strong>
+    <%= answer.title %>
+  </p>
+
+  <p>
+    <strong>Answer:</strong>
+    <%= answer.body %>
+  </p>
+<% end %>
+
 
 <h2>Add Answer:</h2>
 <%= form_for([@question, @question.answers.build]) do |f| %>
