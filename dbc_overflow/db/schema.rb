@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 20150317190133) do
   create_table "answers", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.integer  "votes"
+    t.integer  "votes",       default: 0
     t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20150317190133) do
   create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "votes"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "votes",      default: 0
   end
 
 end

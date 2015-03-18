@@ -3,7 +3,7 @@ class CreateAnswers < ActiveRecord::Migration
     create_table :answers do |t|
       t.string :title
       t.text :body
-      t.integer :votes
+      t.integer :votes, :default => 0
       t.references :question, index: true
 
 

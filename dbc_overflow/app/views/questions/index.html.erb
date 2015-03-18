@@ -24,6 +24,12 @@
       <td> <%= link_to("UpVote", question_upvote_path(question))%> </td>
       <td> <%= link_to("DownVote", question_downvote_path(question))%> </td>
 
+      <%= link_to 'UpVote', question_path(question, question: {votes: question.votes + 1}),
+            method: :put %>
+      <%= link_to 'DownVote', question_path(question, question: {votes: question.votes - 1}),
+            method: :put %>
+
+
 
     </tr>
   <% end %>

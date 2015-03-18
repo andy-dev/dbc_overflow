@@ -8,6 +8,11 @@
   <%= @question.body %>
 </p>
 
+<p>
+  <strong>Votes:</strong>
+  <%= @question.votes %>
+</p>
+
 <h2>Answer</h2>
 <% @question.answers.each do |answer| %>
   <p>
@@ -19,6 +24,8 @@
     <strong>Answer:</strong>
     <%= answer.body %>
   </p>
+
+
 <% end %>
 
 
