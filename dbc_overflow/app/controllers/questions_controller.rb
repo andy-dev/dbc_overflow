@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
               "https://api.github.com/zen",
               :headers => {
                   "Authorization" => "token #{ENV['QUOTE_GH_TOKEN']}",
-                  "User-Agent" => "andy-dev"
+                  "User-Agent" => "ENV['AGENT']"
               })
   end
 
