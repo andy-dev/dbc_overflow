@@ -18,5 +18,3 @@ end
 
 
 
-#pending "add some examples to (or delete) #{__FILE__}"
- # xit "returns a contact's full name as a string"

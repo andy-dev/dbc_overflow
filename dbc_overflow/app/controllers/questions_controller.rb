@@ -2,6 +2,13 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.all
+
+    @quote = HTTParty.get(
+              "https://api.github.com/zen",
+              :headers => {
+                  "Authorization" => "token #{ENV['QUOTE_GH_TOKEN']}",
+                  "User-Agent" => "andy-dev"
+              })
   end
 
   def show
