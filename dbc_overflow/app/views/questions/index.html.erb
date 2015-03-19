@@ -21,8 +21,8 @@
 
 <script id="new_question_template" type="text/x-handlebars-template">
 
-<div>
-<table>
+
+
 
     <tr>
       <td>{{response.title}}</td>
@@ -39,8 +39,8 @@
       <td><%= button_tag "DownVote", 'data-url' => "/questions/{{response.id}}/downvote", :class =>"downvote"%></td>
     </tr>
 
-</table>
-</div>
+
+
 </script>
 
 
@@ -49,15 +49,13 @@
 <div class="container">
 
 <table>
-  <tr>
+  <tr id="results">
     <th> Title</th>
     <th> Text </th>
     <th> Votes </th>
   </tr>
 
-  <tr>
-  <div id="results"></div>
-  </tr>
+
 
   <% @questions.reverse.each do |question| %>
     <tr>
@@ -71,10 +69,8 @@
             method: :delete,
             data: {confirm: 'Are you sure'} %> </td>
 
-
       <td> <%= button_tag("UpVote", 'data-url' => question_upvote_path(question), :class =>"upvote")%> </td>
       <td> <%= button_tag("DownVote", 'data-url' => question_downvote_path(question), :class =>"downvote")%> </td>
-
 
     </tr>
   <% end %>

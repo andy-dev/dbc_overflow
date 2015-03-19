@@ -24,7 +24,7 @@ var addQuestion = function (e){
   .done(function(response){
     var html = $('#new_question_template').html();
     var templatingFunction = Handlebars.compile(html);
-    $('#results').append(templatingFunction({response: response}));
+    $('#results').after(templatingFunction({response: response}));
     $('.upvote').on('click',upVote);
     $('.downvote').on('click',downVote);
   })
