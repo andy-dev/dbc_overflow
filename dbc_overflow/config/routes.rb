@@ -3,16 +3,26 @@ Rails.application.routes.draw do
   resources :questions do
     resources :answers
 
+  post :upvote, on: :member
+  post :downvote, on: :member
+
   end
 
   # these two routes work but they are not all restful
-  put '/questions/:id/upvote' => 'questions#upvote', as: :question_upvote
-  put '/questions/:id/downvote' => 'questions#downvote', as: :question_downvote
+  # put '/questions/:id/upvote' => 'questions#upvote', as: :question_upvote
+  # put '/questions/:id/downvote' => 'questions#downvote', as: :question_downvote
 
 
   # You can have the root of your site routed with "root"
-  root 'questions#index'
+   root 'questions#index'
 
+
+
+# resources :historical_events, only:[:index] do
+#   get :search, on: :collection
+#   post :upvote, on: :member
+#   post :downvote, on: :member
+# end
 
 
   # resources :questions do

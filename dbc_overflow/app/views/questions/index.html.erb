@@ -60,8 +60,8 @@
               method: :delete,
               data: {confirm: 'Are you sure'} %> </td>
 
-        <td> <%= button_tag("UpVote", 'data-url' => question_upvote_path(question), :class =>"upvote")%> </td>
-        <td> <%= button_tag("DownVote", 'data-url' => question_downvote_path(question), :class =>"downvote")%> </td>
+        <td> <%= button_tag("UpVote", 'data-url' => upvote_question_path(question), :class =>"upvote")%> </td>
+        <td> <%= button_tag("DownVote", 'data-url' => downvote_question_path(question), :class =>"downvote")%> </td>
 
       </tr>
     <% end %>

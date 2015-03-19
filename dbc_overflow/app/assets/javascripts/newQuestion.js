@@ -43,7 +43,7 @@ var upVote = function(e){
 
    $.ajax({
      url: url,
-     type: 'PUT',
+     type: 'POST',
    })
    .done(function(serverData) {
      console.log("success");
@@ -68,7 +68,7 @@ var downVote = function(e){
 
    $.ajax({
      url: url,
-     type: 'PUT',
+     type: 'POST',
    })
    .done(function(serverData) {
      console.log("success");
