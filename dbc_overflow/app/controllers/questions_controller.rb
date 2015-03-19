@@ -3,12 +3,12 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
 
-    # @quote = HTTParty.get(
-    #           "https://api.github.com/zen",
-    #           :headers => {
-    #               "Authorization" => "token #{ENV['QUOTE_GH_TOKEN']}",
-    #               "User-Agent" => "ENV['AGENT']"
-    #           })
+    @quote = HTTParty.get(
+              "https://api.github.com/zen",
+              :headers => {
+                  "Authorization" => "token #{ENV['QUOTE_GH_TOKEN']}",
+                  "User-Agent" => "ENV['AGENT']"
+              })
   end
 
   def show
@@ -26,12 +26,10 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.create(question_params)
 
-
     respond_to do |format|
       format.html # nothing else needed here
       format.json { render :json => @question}
     end
-
 
       # if @question.save
       #   redirect_to @question

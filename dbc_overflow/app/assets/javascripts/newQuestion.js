@@ -4,6 +4,8 @@ $(function() {
 
 function bindEvents() {
   $('#new-question').on('submit',addQuestion);
+  $('.upvote').on('click',upVote);
+  $('.downvote').on('click',downVote);
 }
 
 

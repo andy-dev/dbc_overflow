@@ -1,6 +1,6 @@
 <h1>Listing all Questions</h1>
 
-
+<%= @quote.body %>
 
 <%= form_for :question, :html => {:id => "new-question", "data-url" => questions_path} do |f| %>
   <p>
@@ -23,11 +23,6 @@
 
 <div>
 <table>
-    <tr>
-      <th> Title </th>
-      <th> Text </th>
-      <th> Votes </th>
-    </tr>
 
     <tr>
       <td>{{response.title}}</td>
@@ -40,19 +35,49 @@
             method: :delete,
             data: {confirm: 'Are you sure'} %> </td>
 
-      <td><%= button_to "UpVote", "", 'data-url' => "/questions/{{response.id}}/upvote", :class =>"upvote"%></td>
-      <td><%= button_to "DownVote", "", 'data-url' => "/questions/{{response.id}}/downvote", :class =>"downvote"%></td>
-
-
-
+      <td><%= button_tag "UpVote", 'data-url' => "/questions/{{response.id}}/upvote", :class =>"upvote"%></td>
+      <td><%= button_tag "DownVote", 'data-url' => "/questions/{{response.id}}/downvote", :class =>"downvote"%></td>
     </tr>
 
 </table>
 </div>
-
 </script>
 
 
-<div id="results"></div>
 
+
+<div class="container">
+
+<table>
+  <tr>
+    <th> Title</th>
+    <th> Text </th>
+    <th> Votes </th>
+  </tr>
+
+  <tr>
+  <div id="results"></div>
+  </tr>
+
+  <% @questions.reverse.each do |question| %>
+    <tr>
+      <td> <%= question.title %> </td>
+      <td> <%= question.body %> </td>
+      <td id= "<%= question.id %>"> <%= question.votes %> </td>
+
+      <td> <%= link_to 'Show', question_path(question) %> </td>
+      <td> <%= link_to 'Edit', edit_question_path(question) %> </td>
+      <td> <%= link_to 'Destroy', question_path(question),
+            method: :delete,
+            data: {confirm: 'Are you sure'} %> </td>
+
+
+      <td> <%= button_tag("UpVote", 'data-url' => question_upvote_path(question), :class =>"upvote")%> </td>
+      <td> <%= button_tag("DownVote", 'data-url' => question_downvote_path(question), :class =>"downvote")%> </td>
+
+
+    </tr>
+  <% end %>
+</table>
+</div>
 
