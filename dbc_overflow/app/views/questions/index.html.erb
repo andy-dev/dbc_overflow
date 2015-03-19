@@ -1,6 +1,6 @@
 <h1>Listing all Questions</h1>
 
-<%= @quote.body %>
+
 
 <%= form_for :question, :html => {:id => "new-question", "data-url" => questions_path} do |f| %>
   <p>
@@ -32,12 +32,17 @@
     <tr>
       <td>{{response.title}}</td>
       <td>{{response.body}}</td>
-      <td>{{response.votes}}</td>
+      <td id="{{response.id}}">{{response.votes}}</td>
       <td><%= link_to "Show", "/questions/{{response.id}}" %></td>
+
       <td><%= link_to "Edit", "/questions/{{response.id}}/edit" %></td>
-      <td> <%= link_to 'Destroy', "/questions/{{response.id}}",
+      <td><%= link_to 'Destroy', "/questions/{{response.id}}",
             method: :delete,
             data: {confirm: 'Are you sure'} %> </td>
+
+      <td><%= button_to "UpVote", "", 'data-url' => "/questions/{{response.id}}/upvote", :class =>"upvote"%></td>
+      <td><%= button_to "DownVote", "", 'data-url' => "/questions/{{response.id}}/downvote", :class =>"downvote"%></td>
+
 
 
     </tr>
@@ -50,36 +55,4 @@
 
 <div id="results"></div>
 
-<table>
 
-  <tr>
-    <th> Title</th>
-    <th> Text </th>
-    <th> Votes </th>
-  </tr>
-
-  <% @questions.reverse.each do |question| %>
-    <tr>
-      <td> <%= question.title %> </td>
-      <td> <%= question.body %> </td>
-      <td> <%= question.votes %> </td>
-
-      <td> <%= link_to 'Show', question_path(question) %> </td>
-      <td> <%= link_to 'Edit', edit_question_path(question) %> </td>
-      <td> <%= link_to 'Destroy', question_path(question),
-            method: :delete,
-            data: {confirm: 'Are you sure'} %> </td>
-      <td> <%= link_to("UpVote", question_upvote_path(question))%> </td>
-      <td> <%= link_to("DownVote", question_downvote_path(question))%> </td>
-
-      <td><%= link_to 'UpVoteNoRoute', question_path(question, question: {votes: question.votes + 1}),
-            method: :put %></td>
-      <td><%= link_to 'DownVoteNoRoute', question_path(question, question: {votes: question.votes - 1}),
-            method: :put %></td>
-
-    </tr>
-  <% end %>
-
-</table>
-
- <%= link_to 'New Question', new_question_path %>

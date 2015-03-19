@@ -3,12 +3,12 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
 
-    @quote = HTTParty.get(
-              "https://api.github.com/zen",
-              :headers => {
-                  "Authorization" => "token #{ENV['QUOTE_GH_TOKEN']}",
-                  "User-Agent" => "ENV['AGENT']"
-              })
+    # @quote = HTTParty.get(
+    #           "https://api.github.com/zen",
+    #           :headers => {
+    #               "Authorization" => "token #{ENV['QUOTE_GH_TOKEN']}",
+    #               "User-Agent" => "ENV['AGENT']"
+    #           })
   end
 
   def show
@@ -52,16 +52,19 @@ class QuestionsController < ApplicationController
 
   def upvote
     question = Question.find(params[:id])
+
     #question.update_attributes(votes: question.votes +1)
     question.increment!(:votes)
-    redirect_to questions_path
+    # redirect_to questions_path
+    render :json => question
   end
 
   def downvote
     question = Question.find(params[:id])
     #question.update_attributes(votes: question.votes +1)
     question.decrement!(:votes)
-    redirect_to questions_path
+    # redirect_to questions_path
+    render :json => question
   end
 
   def destroy

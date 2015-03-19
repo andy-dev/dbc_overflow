@@ -12,9 +12,6 @@ var addQuestion = function (e){
 
   var formData = $(this).serialize();
   var url = $(this).attr("data-url");
-  // console.log(url)
-  // console.log(formData)
-
 
   $.ajax({
     type: "POST",
@@ -22,20 +19,74 @@ var addQuestion = function (e){
     data: formData,
     dataType: "json"
   })
-
   .done(function(response){
-    console.log("success")
-    console.log(response)
-    // var context = {new_question: response};
-    // console.log(context)
     var html = $('#new_question_template').html();
     var templatingFunction = Handlebars.compile(html);
-    $('#results').html(templatingFunction({response: response}));
+    $('#results').append(templatingFunction({response: response}));
+    $('.upvote').on('click',upVote);
+    $('.downvote').on('click',downVote);
   })
-
   .fail(function(){
-    console.log("fail")
-  })
+  console.log("fail")
+  });
 
 }
+
+
+var upVote = function(e){
+  e.preventDefault();
+
+  var url = $(this).data("url");
+  console.log(url)
+
+   $.ajax({
+     url: url,
+     type: 'PUT',
+   })
+   .done(function(serverData) {
+     console.log("success");
+     console.log(serverData);
+     $("#"+serverData.id).text(serverData.votes)
+   })
+   .fail(function() {
+     console.log("error");
+   })
+   .always(function() {
+     console.log("complete");
+   });
+
+}
+
+
+var downVote = function(e){
+  e.preventDefault();
+
+  var url = $(this).data("url");
+  console.log(url)
+
+   $.ajax({
+     url: url,
+     type: 'PUT',
+   })
+   .done(function(serverData) {
+     console.log("success");
+     console.log(serverData);
+     $("#"+serverData.id).text(serverData.votes)
+   })
+   .fail(function() {
+     console.log("error");
+   })
+   .always(function() {
+     console.log("complete");
+   });
+
+}
+
+
+
+
+
+
+
+
 

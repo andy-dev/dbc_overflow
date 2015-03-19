@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   end
 
   # these two routes work but they are not all restful
-  get '/questions/:id/upvote' => 'questions#upvote', as: :question_upvote
-  get '/questions/:id/downvote' => 'questions#downvote', as: :question_downvote
+  put '/questions/:id/upvote' => 'questions#upvote', as: :question_upvote
+  put '/questions/:id/downvote' => 'questions#downvote', as: :question_downvote
 
 
   # You can have the root of your site routed with "root"
