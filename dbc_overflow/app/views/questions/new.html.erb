@@ -1,6 +1,6 @@
 <h1>New Question</h1>
 
-<%= form_for :question, url: questions_path do |f| %>
+<%= form_for :question, url: questions_path, :html => {:id => "new-question"} do |f| %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>

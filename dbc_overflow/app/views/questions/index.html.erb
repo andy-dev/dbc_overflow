@@ -2,6 +2,53 @@
 
 <%= @quote.body %>
 
+<%= form_for :question, :html => {:id => "new-question", "data-url" => questions_path} do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+
+<script id="new_question_template" type="text/x-handlebars-template">
+
+<div>
+<table>
+    <tr>
+      <th> Title </th>
+      <th> Text </th>
+      <th> Votes </th>
+    </tr>
+
+    <tr>
+      <td>{{response.title}}</td>
+      <td>{{response.body}}</td>
+      <td>{{response.votes}}</td>
+      <td><%= link_to "Show", "/questions/{{response.id}}" %></td>
+      <td><%= link_to "Edit", "/questions/{{response.id}}/edit" %></td>
+      <td> <%= link_to 'Destroy', "/questions/{{response.id}}",
+            method: :delete,
+            data: {confirm: 'Are you sure'} %> </td>
+
+
+    </tr>
+
+</table>
+</div>
+
+</script>
+
+
+<div id="results"></div>
 
 <table>
 
@@ -11,7 +58,7 @@
     <th> Votes </th>
   </tr>
 
-  <% @questions.each do |question| %>
+  <% @questions.reverse.each do |question| %>
     <tr>
       <td> <%= question.title %> </td>
       <td> <%= question.body %> </td>
@@ -30,11 +77,9 @@
       <td><%= link_to 'DownVoteNoRoute', question_path(question, question: {votes: question.votes - 1}),
             method: :put %></td>
 
-
-
     </tr>
   <% end %>
 
 </table>
 
-<%= link_to 'New Question', new_question_path %>
+ <%= link_to 'New Question', new_question_path %>
