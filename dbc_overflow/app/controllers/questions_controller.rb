@@ -50,7 +50,6 @@ class QuestionsController < ApplicationController
 
   def upvote
     question = Question.find(params[:id])
-
     #question.update_attributes(votes: question.votes +1)
     question.increment!(:votes)
     # redirect_to questions_path
@@ -59,7 +58,6 @@ class QuestionsController < ApplicationController
 
   def downvote
     question = Question.find(params[:id])
-    #question.update_attributes(votes: question.votes +1)
     question.decrement!(:votes)
     # redirect_to questions_path
     render :json => question
@@ -75,7 +73,6 @@ class QuestionsController < ApplicationController
     def question_params
       params.require(:question).permit(:title, :body, :votes)
     end
-
 
 end
 

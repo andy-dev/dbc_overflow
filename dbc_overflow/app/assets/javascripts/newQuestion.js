@@ -2,7 +2,7 @@ $(function() {
   bindEvents();
 });
 
-function bindEvents() {
+function questionBindEvents() {
   $('#new-question').on('submit',addQuestion);
   $('.upvote').on('click',upVote);
   $('.downvote').on('click',downVote);
@@ -30,7 +30,6 @@ var addQuestion = function (e){
   .fail(function(){
   console.log("fail")
   });
-
 }
 
 var upVote = function(e){
@@ -48,11 +47,7 @@ var upVote = function(e){
    })
    .fail(function() {
      console.log("error");
-   })
-   .always(function() {
-     console.log("complete");
    });
-
 }
 
 var downVote = function(e){
@@ -70,11 +65,7 @@ var downVote = function(e){
    })
    .fail(function() {
      console.log("error");
-   })
-   .always(function() {
-     console.log("complete");
    });
-
 }
 
 

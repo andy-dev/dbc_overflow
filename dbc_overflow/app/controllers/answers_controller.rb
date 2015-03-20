@@ -11,7 +11,9 @@ class AnswersController < ApplicationController
     # redirect_to question_path(@question)
     respond_to do |format|
       format.html # nothing else needed here
-      format.json { render :json => @answer}
+      # format.json { render :json => @answer}
+      #you dont need to pass two but this is the format if you need to
+      format.json { render :json => {:anwer => @answer, :question => @question}}
     end
   end
 

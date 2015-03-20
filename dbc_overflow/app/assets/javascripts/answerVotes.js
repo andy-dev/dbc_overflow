@@ -2,7 +2,7 @@ $(function() {
   testbindEvents();
 });
 
-function testbindEvents() {
+function answerBindEvents() {
   $('.new_answer').on('submit',addAnswer);
   $('.answerupvote').on('click',answerUpVote);
   $('.answerdownvote').on('click',answerDownVote);
@@ -13,7 +13,6 @@ var addAnswer = function (e){
 
   var formData = $(this).serialize();
   var url = $(this).attr("action");
-  console.log(url)
 
   $.ajax({
     type: "POST",
@@ -23,17 +22,15 @@ var addAnswer = function (e){
   })
   .done(function(answerResponse){
     console.log("success");
-    console.log(answerResponse);
     var html = $('#new_answer_template').html();
     var templatingFunction = Handlebars.compile(html);
-    $('#results').append(templatingFunction({answerResponse: answerResponse}));
+    $('#results').before(templatingFunction({answerResponse: answerResponse}));
     $('.answerupvote').on('click',upVote);
     $('.answerdownvote').on('click',downVote);
   })
   .fail(function(){
   console.log("fail")
   });
-
 }
 
 var answerUpVote = function(e){
@@ -52,11 +49,7 @@ var answerUpVote = function(e){
    })
    .fail(function() {
      console.log("error");
-   })
-   .always(function() {
-     console.log("complete");
    });
-
 }
 
 var answerDownVote = function(e){
@@ -74,9 +67,5 @@ var answerDownVote = function(e){
    })
    .fail(function() {
      console.log("error");
-   })
-   .always(function() {
-     console.log("complete");
    });
-
 }
