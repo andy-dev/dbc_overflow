@@ -1,6 +1,8 @@
 
 <!-- ######################     DISPLAY QUESTION INFORMATION   ############################ -->
-
+<div class="container">
+  <%= link_to 'Back', questions_path %>
+  <h1>Question</h1>
 <p>
   <strong>Title:</strong>
   <%= @question.title %>
@@ -11,12 +13,21 @@
   <%= @question.body %>
 </p>
 
-<strong>Votes:</strong>
-  <p id= "<%= @question.id %>"> <%= @question.votes %> </p>
+<p>
+  <%= button_tag('data-url' => upvote_question_path(@question), :class =>"upvote btn btn-default") do %>
+    <i class="glyphicon glyphicon-triangle-top"></i>
+  <% end %>
+</p>
 
-<p> <%= button_tag("UpVote", 'data-url' => upvote_question_path(@question), :class =>"upvote")%> </p>
-<p> <%= button_tag("DownVote", 'data-url' => downvote_question_path(@question), :class =>"downvote")%> </p>
+<p id= "<%= @question.id %>"><%= @question.votes %> </p>
 
+<p>
+<%= button_tag('data-url' => downvote_question_path(@question), :class =>"downvote btn btn-default") do%>
+      <i class="glyphicon glyphicon-triangle-bottom"></i>
+    <% end %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %>
 <!-- ######################     DISPLAY QUESTION ANSWERS   ############################ -->
 
 <h2>Answer</h2>
@@ -41,6 +52,9 @@
 
 <% end %>
 
+
+
+
 <!-- ######################     NEW ANSWER FORM    ############################ -->
 
 <h2 id = "results">Add Answer:</h2>
@@ -48,20 +62,19 @@
 <%= form_for([@question, @question.answers.build]) do |f| %>
   <p>
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </p>
   <p>
     <%= f.label :body %><br>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, class: "form-control" %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit "Answer", class: "btn btn-large btn-primary" %>
   </p>
 <% end %>
 
 
-<%= link_to 'Back', questions_path %>
-<%= link_to 'Edit', edit_question_path(@question) %>
+
 
 <!-- ######################      Template for Ajax    ######################## -->
 
@@ -82,3 +95,4 @@
 </script>
 
 
+</div>

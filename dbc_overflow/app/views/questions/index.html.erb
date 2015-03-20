@@ -39,8 +39,6 @@
       <td><%= button_tag "UpVote", 'data-url' => "/questions/{{response.id}}/upvote", :class =>"upvote"%></td>
       <td><%= button_tag "DownVote", 'data-url' => "/questions/{{response.id}}/downvote", :class =>"downvote"%></td>
 
-
-
     </tr>
 
 </script>
@@ -49,17 +47,23 @@
 <div class="container">
 
   <table>
-    <tr id="results">
-      <th> Title</th>
-      <th> Text </th>
+    <tr>
+      <th> Question Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th> Votes </th>
+
     </tr>
 
     <% @questions.reverse.each do |question| %>
       <tr>
         <td> <%= question.title %> </td>
+      </tr>
+
+      <tr id="results">
         <td> <%= question.body %> </td>
-        <td id= "<%= question.id %>"> <%= question.votes %> </td>
 
         <td>
           <%= link_to question_path(question),class: "btn btn-default" do %>
@@ -86,6 +90,8 @@
             <i class="glyphicon glyphicon-triangle-top"></i>
           <% end %>
         </td>
+
+       <td id= "<%= question.id %>"> <%= question.votes %> </td>
 
         <td>
           <%= button_tag('data-url' => downvote_question_path(question), :class =>"downvote btn btn-default") do%>
