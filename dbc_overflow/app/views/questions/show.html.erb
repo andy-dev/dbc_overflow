@@ -8,15 +8,11 @@
   <%= @question.body %>
 </p>
 
-<p>
-  <strong>Votes:</strong>
-  <%= @question.votes %>
-</p>
+<strong>Votes:</strong>
+  <p id= "<%= @question.id %>"> <%= @question.votes %> </p>
 
-<p>
-  <strong>Question ID:</strong>
-  <%= @question.id %>
-</p>
+<p> <%= button_tag("UpVote", 'data-url' => upvote_question_path(@question), :class =>"upvote")%> </p>
+<p> <%= button_tag("DownVote", 'data-url' => downvote_question_path(@question), :class =>"downvote")%> </p>
 
 <h2>Answer</h2>
 <% @question.answers.each do |answer| %>
@@ -30,18 +26,17 @@
     <%= answer.body %>
   </p>
 
-  <p>
-    <strong>Votes:</strong>
-    <%= answer.votes %>
-  </p>
+  <strong>Votes:</strong>
+  <p id= "<%= answer.id %>"> <%= answer.votes %> </p>
 
 
- <p> <%= link_to 'Edit', edit_question_answer_path(answer, :question_id=>@question.id) %> </p>
- <p> <%= link_to 'Destroy', question_answer_path(answer, :question_id=>@question.id),
+  <p> <%= link_to 'Edit', edit_question_answer_path(answer, :question_id=>@question.id) %> </p>
+  <p> <%= link_to 'Destroy', question_answer_path(answer, :question_id=>@question.id),
               method: :delete,
               data: {confirm: 'Are you sure'} %></p>
 
-
+  <td> <%= button_tag("UpVote", 'data-url' => upvote_question_answer_path(answer, :question_id=>@question.id), :class =>"answerupvote")%> </td>
+  <td> <%= button_tag("DownVote", 'data-url' => downvote_question_answer_path(answer, :question_id=>@question.id), :class =>"answerdownvote")%> </td>
 
 <% end %>
 

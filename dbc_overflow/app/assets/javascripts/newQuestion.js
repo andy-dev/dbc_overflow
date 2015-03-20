@@ -8,7 +8,6 @@ function bindEvents() {
   $('.downvote').on('click',downVote);
 }
 
-
 var addQuestion = function (e){
   e.preventDefault();
 
@@ -34,12 +33,10 @@ var addQuestion = function (e){
 
 }
 
-
 var upVote = function(e){
   e.preventDefault();
 
   var url = $(this).data("url");
-  console.log(url)
 
    $.ajax({
      url: url,
@@ -47,7 +44,6 @@ var upVote = function(e){
    })
    .done(function(serverData) {
      console.log("success");
-     console.log(serverData);
      $("#"+serverData.id).text(serverData.votes)
    })
    .fail(function() {
@@ -59,12 +55,10 @@ var upVote = function(e){
 
 }
 
-
 var downVote = function(e){
   e.preventDefault();
 
   var url = $(this).data("url");
-  console.log(url)
 
    $.ajax({
      url: url,
@@ -72,7 +66,6 @@ var downVote = function(e){
    })
    .done(function(serverData) {
      console.log("success");
-     console.log(serverData);
      $("#"+serverData.id).text(serverData.votes)
    })
    .fail(function() {

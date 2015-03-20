@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
 
-  resources :questions do
-    resources :answers
 
-  post :upvote, on: :member
-  post :downvote, on: :member
+  concern :votable do
+    member do
+      post :upvote
+      post :downvote
+    end
+  end
 
+  resources :questions, concerns: [:votable] do
+    resources :answers, concerns: [:votable]
   end
 
   # these two routes work but they are not all restful
@@ -17,6 +21,9 @@ Rails.application.routes.draw do
    root 'questions#index'
 
 
+  # resources :questions do
+  #   resources :answers
+  # end
 
 # resources :historical_events, only:[:index] do
 #   get :search, on: :collection
