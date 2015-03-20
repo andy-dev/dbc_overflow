@@ -1,0 +1,21 @@
+<h1>Edit Your Answer</h1>
+
+<%= form_for :answer, url: question_answer_path(@answer, params[:id]), method: :patch do |f| %>
+
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+   </p>
+
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_field :body %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Back', questions_path %>
