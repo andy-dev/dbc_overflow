@@ -42,6 +42,7 @@
 
 
 <h2>Add Answer:</h2>
+
 <%= form_for([@question, @question.answers.build]) do |f| %>
   <p>
     <%= f.label :title %><br>
@@ -56,7 +57,29 @@
   </p>
 <% end %>
 
+<div id = "results"></div>
+
 <%= link_to 'Back', questions_path %>
 <%= link_to 'Edit', edit_question_path(@question) %>
 
 
+<script id="new_answer_template" type="text/x-handlebars-template">
+
+    <tr>
+      <td>{{answerResponse.title}}</td>
+      <td>{{answerResponse.body}}</td>
+
+      <td id="{{answerResponse.id}}">{{answerResponse.votes}}</td>
+
+
+      <td><%= link_to "Edit", "/questions/{{answerResponse.question_id}}/answers/{{answerResponse.id}}/edit" %></td>
+      <td><%= link_to 'Destroy', "/questions/{{answerResponse.question_id}}/answers/{{answerResponse.id}}",
+            method: :delete,
+            data: {confirm: 'Are you sure'} %> </td>
+
+      <td><%= button_tag "UpVote", 'data-url' => "/questions/{{answerResponse.question_id}}/answers/{{answerResponse.id}}/upvote", :class =>"upvote"%></td>
+      <td><%= button_tag "DownVote", 'data-url' => "/questions/{{answerResponse.question_id}}/answers/{{answerResponse.id}}/downvote", :class =>"downvote"%></td>
+
+    </tr>
+
+</script>
