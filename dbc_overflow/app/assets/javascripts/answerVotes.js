@@ -22,6 +22,7 @@ var addAnswer = function (e){
   })
   .done(function(answerResponse){
     console.log("success");
+
     var html = $('#new_answer_template').html();
     var templatingFunction = Handlebars.compile(html);
     $('#results').before(templatingFunction({answerResponse: answerResponse}));
