@@ -77,8 +77,8 @@
         method: :delete,
         data: {confirm: 'Are you sure'} %> </p>
 
-  <td><%= button_tag "UpVote", 'data-url' => "/questions/{{answerResponse.question_id}}/answers/{{answerResponse.id}}/upvote", :class =>"upvote"%></td>
-  <td><%= button_tag "DownVote", 'data-url' => "/questions/{{answerResponse.question_id}}/answers/{{answerResponse.id}}/downvote", :class =>"downvote"%></td>
+  <td><%= button_tag "UpVote", 'data-url' => "/questions/{{answerResponse.question_id}}/answers/{{answerResponse.id}}/upvote", :class =>"answerupvote"%></td>
+  <td><%= button_tag "DownVote", 'data-url' => "/questions/{{answerResponse.question_id}}/answers/{{answerResponse.id}}/downvote", :class =>"answerdownvote"%></td>
 </script>
 
 

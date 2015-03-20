@@ -1,5 +1,5 @@
 $(function() {
-  bindEvents();
+  questionBindEvents();
 });
 
 function questionBindEvents() {

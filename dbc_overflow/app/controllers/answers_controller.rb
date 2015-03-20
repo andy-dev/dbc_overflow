@@ -11,9 +11,9 @@ class AnswersController < ApplicationController
     # redirect_to question_path(@question)
     respond_to do |format|
       format.html # nothing else needed here
-      # format.json { render :json => @answer}
+       format.json { render :json => @answer}
       #you dont need to pass two but this is the format if you need to
-      format.json { render :json => {:anwer => @answer, :question => @question}}
+      #format.json { render :json => {:anwer => @answer, :question => @question}}
     end
   end
 
@@ -23,7 +23,6 @@ class AnswersController < ApplicationController
     @answer.update(answer_params)
     redirect_to question_path(@question)
   end
-
 
   def upvote
     answer = Answer.find(params[:id])

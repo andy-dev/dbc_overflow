@@ -1,5 +1,5 @@
 $(function() {
-  testbindEvents();
+  answerBindEvents();
 });
 
 function answerBindEvents() {
@@ -25,8 +25,8 @@ var addAnswer = function (e){
     var html = $('#new_answer_template').html();
     var templatingFunction = Handlebars.compile(html);
     $('#results').before(templatingFunction({answerResponse: answerResponse}));
-    $('.answerupvote').on('click',upVote);
-    $('.answerdownvote').on('click',downVote);
+    $('.answerupvote').on('click',answerUpVote);
+    $('.answerdownvote').on('click',answerDownVote);
   })
   .fail(function(){
   console.log("fail")
