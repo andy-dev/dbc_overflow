@@ -3,6 +3,18 @@
 
   <%= @quote.body %>
 
+<p>
+  <% if admin_signed_in?%>
+    <%= "I am an admin" %>
+    <% elsif %>
+    <% user_signed_in? %>
+    <%= "I am a simple user" %>
+    <% else %>
+  <%= "I am a visitor" %>
+  <% end %>
+
+</p>
+
   <h3>Something to Ask?</h3>
   <%= form_for :question, :html => {:id => "new-question", "data-url" => questions_path} do |f| %>
 
